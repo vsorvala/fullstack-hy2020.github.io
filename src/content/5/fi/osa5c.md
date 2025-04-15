@@ -186,6 +186,28 @@ module.exports = {
   // ...
 }
   ```
+En päässyt rivien 166-188 ohjeilla eroon ko eslintin virheilmoituksesta, mutta se onnistui seuraavasti:
+
+```
+npm install @vitest/eslint-plugin --save-dev
+```
+ja muokkaamalla tiedostoa _.eslint.config.js_ seuraavasti: 
+
+```js
+import vitest from '@vitest/eslint-plugin';
+
+export default [
+  { ignores: ['dist'] },
+  {
+    files: ['**/*.{js,jsx}'],
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: {
+        ...globals.browser, ...vitest.environments.env.globals
+
+      },
+  ```
+
 
 ### Testien sijainti
 
